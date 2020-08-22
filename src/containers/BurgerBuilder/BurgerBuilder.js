@@ -5,7 +5,6 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 import axios from '../../axios-orders'
-import logo from "../../components/Logo/Logo";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
@@ -23,7 +22,7 @@ class BurgerBuilder extends Component {
         purchasable: false,
         purchasing: false,
         loading: false,
-        error:false
+        error: false
 
     }
 
@@ -33,8 +32,8 @@ class BurgerBuilder extends Component {
             .then(response => {
                 this.setState({ingredients: response.data})
             })
-            .catch(error=>{
-                this.setState({error:true})
+            .catch(error => {
+                this.setState({error: true})
             })
     }
 
@@ -80,14 +79,14 @@ class BurgerBuilder extends Component {
         //alert('You continue!');
 
         const queryParams = [];
-        for(let i in this.state.ingredients){
-            queryParams.push(encodeURIComponent(i)+'='+ encodeURIComponent(this.state.ingredients[i]))
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
         }
-        queryParams.push('price='+this.state.totalPrice);
+        queryParams.push('price=' + this.state.totalPrice);
         this.props.history.push({
-        pathname:'/checkout',
-        search:'?' + queryParams.join('&')
-    })
+            pathname: '/checkout',
+            search: '?' + queryParams.join('&')
+        })
     }
 
     render() {
@@ -101,8 +100,8 @@ class BurgerBuilder extends Component {
         if (this.state.loading) {
             orderSummary = <Spinner/>
         }
-        let burger = this.state.error ? <p>Ingredients can't be loaded</p>: <Spinner/>;
-        if(this.state.ingredients){
+        let burger = this.state.error ? <p>Ingredients can't be loaded</p> : <Spinner/>;
+        if (this.state.ingredients) {
             burger = (<Auxillary>
                 <Burger ingredients={this.state.ingredients}/>
                 < BuildControls
@@ -113,14 +112,12 @@ class BurgerBuilder extends Component {
                     price={this.state.totalPrice}
                     ordered={this.purchaseHandler}
                 />
-            </Auxillary> )
+            </Auxillary>)
             orderSummary = <OrderSummary ingredients={this.state.ingredients}
                                          purchaseCancelled={this.purchaseCancelHandler}
                                          purchaseContinued={this.purchaseContinueHandler}
                                          price={this.state.totalPrice}/>;
         }
-
-
 
 
         return (
