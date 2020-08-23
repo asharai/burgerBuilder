@@ -9,9 +9,9 @@ const order = (props) => {
     const ingredientOutput = ingredients.map(ig=>{
         return <span style={{textTransform:'capitalize',
             display:"inline-block",
-            margin:'0 8px',
+            margin:'0 10px',
             border:'1px solid gray',
-            padding:'5px'}} key={ig.name}>{ig.name} ({ig.amount})</span>
+            padding:'7px'}} key={ig.name}>{ig.name} ({ig.amount})</span>
     })
     return (
         <div className={classes.Order}>
