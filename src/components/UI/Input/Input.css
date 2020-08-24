@@ -2,6 +2,7 @@
     width:100%;
     padding:10px;
     box-sizing: border-box;
+    text-transform: capitalize;
 }
 .Label{
     font-weight: bold;
@@ -12,6 +13,8 @@
     outline: none;
     border:1px solid #ccc;
     background-color: #fff;
+    margin-bottom: 5px;
+
     font:inherit;
     padding: 6px 10px;
     display: block;

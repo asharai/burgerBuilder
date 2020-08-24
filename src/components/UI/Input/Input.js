@@ -17,7 +17,7 @@ const input = (props) => {
         <div className={classes.Input}>
             <label htmlFor="" className={classes.Label}>{props.label}</label>
             {inputElement}
-            input
+            {props.name}
         </div>
     );
 };
