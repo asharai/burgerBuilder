@@ -4,10 +4,11 @@ import App from './App';
 import './index.css';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from 'react-redux';
-import {createStore} from "redux";
-import reducer from "./store/reducers/burgerBuilder";
-
-const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+import {createStore,applyMiddleware,compose} from "redux";
+import burgerBuilderReducer from "./store/reducers/burgerBuilder";
+import thunk  from "redux-thunk";
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(burgerBuilderReducer,composeEnhancers(applyMiddleware(thunk)));
 const app = (
    <Provider store = {store}>
        <BrowserRouter>
